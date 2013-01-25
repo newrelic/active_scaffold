@@ -127,6 +127,8 @@ module ActiveScaffold
         content = File.binread(js_file)
         content.gsub!(/\A/, prepend)
         File.open(js_file, 'wb') { |file| file.write(content) }
+      rescue Errno::ENOENT
+        # ignore this
       end
       
       def self.to_datepicker_format(rails_format)
